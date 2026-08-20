@@ -3,7 +3,7 @@ alert("Olá mundo!");
  var nasc = 2008;
  let nome = "Francisco";
  const viva = true;
- let altura = 1.76
+ let altura = 1.76;
 
  if (viva){
     let saudacao = "Olá " + nome + "!";
