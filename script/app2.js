@@ -1,65 +1,39 @@
-const amigos = []
-const cadastro = document.getElementById("cadastro");
-const nome = cadastro.nome;
-const nasc = cadastro.nasc;
-const whatsapp = cadastro.whatsapp;
-const lista = document.getElementById("lista");
-let editando = null;
-
-cadastro.addEventListener("submit", function(e){
-    e.preventDefault();
-    let item = [nome.value, nasc.value, whatsapp.value];
-    if (editando == null){
-        //Se editando nulo, comece a adicionar
-    let check = amigos.find(item => item[0] == nome.value);
-    if (check == undefined){
-            //Adiciona se não existir
-            amigos.unshift(item);
-            //Limpa o formulário
-            cadastro.reset();
-        }else{
-        alert(`${nome.value} já cadastrado.`)
-        }
-    }else{
-        //Se editando diferente de nulo, atualizar
-        let amigo = amigos[editando] //[Nome, Nasc, Whatsapp]
-        amigo[0] = nome.value; //valor digitado em input name=nome
-        amigo[1] = nasc.value; //valor digitado em input name=nasc
-        amigo[2] = whatsapp.value; //valor digitado em input name=whatsapp
+class Animal{
+    constructor(n, c="desconhecido", a=0.0, p=0, r="Vira-lata"){
+        this.nome = n;
+        this.cor = c;
+        this.altura = a;
+        this.raca = r;
     }
-    //Atualiza lista
-    exibirLista();
-})
-
-function exibirLista(){
-    let itens = "";
-    for(let i = 0; i<amigos.length; i++){
-        let item = amigos[i]; //[Nome, Nasc, Whatsapp]
-        //cria botao para remover
-        let remover = `<button onclick="remover(${i})">Remover</button>`
-        let atualizar = `<button onclick="atualizar(${i})">Atualizar</button>`
-        //Cria uma tag li
-        let li = `<li>${item[0]} | ${item[1]} | ${item[2]} | ${remover} ${atualizar} </li>`;
-        //Junta o li nos itens
-        itens = itens + li;
+    falar(){
+        alert("oi");
     }
-    //Alterar o html da lista para ser igual aos itens
-    lista.innerHTML = itens;
+    comer(kg){
+        this.peso = this.peso + kg;
+        alert("Comi")
+    }
+    cagar(kg){
+        this.peso = this.peso - kg;
+        alert("Caguei");
+    }
+    saudar(){
+        let msg = `Olá meu nome é ${this.nome}\n`;
+        msg = msg+`Cor: ${this.cor} Raça:${this.raca}\n`
+        msg = msg+`Peso: ${this.peso}\n`
+        msg = msg+`Altura: ${this.altura}\n`
+        alert(msg)
+    }
 }
 
-function remover(i){
-    let item = amigos[i]; //[Nome, Nasc, Whatsaap]
-    let check = confirm(`Deseja realmente excluir ${item[0]}?`);
-    if (check == true){
-        amigos.splice(i,1); //splice(posição inicial, qtd itens a remover)
+class Cachorro extends Animal{
+    constructor(n, c="desconhecido", a=0.0, p=0, r="Vira-lata"){
+        super(n,c,a,p,r);
+        this.patas = 4;
     }
-    exibirLista();
+    falar(){
+        alert("au!au!");
+    }
 }
 
-function atualizar(i){
-    editando = i;
-    let item = amigos[editando]; //[Nome, Nasc, Whatsapp]
-    nome.value = item[0];
-    nasc.value = item[1];
-    whatsapp.value = item[2];
-}
+const balu = new Animal("Balu Brasil");
+const mel = new Animal("Mel", "Amarelo", 1.10, 45, "Labrador");
