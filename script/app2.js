@@ -34,7 +34,7 @@ class Cachorro extends Animal{
         alert("au!au!");
     }
     saudar(){
-        let msg = super().saudar();
+        let msg = super.saudar();
         msg = msg +"\nSou um cachorro!";
         alert(msg); 
     }
@@ -47,9 +47,14 @@ class Passaro extends Animal{
     falar(){
         alert("fiu!fiu!");
     }
+    saudar(){
+        let msg = super.saudar();
+        msg = msg + "Eu sou um pássaro!";
+        alert(msg);
+    }
 
 }
 
 const balu = new Animal("Balu Brasil");
-const mel = new Animal("Mel", "Amarelo", 1.10, 45, "Labrador");
-const leleco = new Passaro("Leleco Brasil", r="Papagaio");
+const mel = new Cachorro("Mel", "Amarelo", 1.10, 45, "Labrador");
+const leleco = new Passaro("Leleco Brasil", undefined, undefined, undefined, "Papagaio");
