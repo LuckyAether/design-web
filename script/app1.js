@@ -1,29 +1,15 @@
 /*Processamento/Armazenamento*/
-const lista = []
-
+let hoje = new Date();
 /*Entradas*/
-const formulario = document.getElementById("formulario");
-const texto = formulario.texto;
+const cadastro = document.getElementById("cadastro");
+const nome = cadastro.nome;
+/*saidas*/
+const saudacao = document.getElementById("saudacao");
 
-/*Saidas*/
-const tags = document.getElementById("tags");
-
-/*Gatilho/Evento*/
-formulario.addEventListener("submit", function(e){
+/*Passo a passo*/
+cadastro.addEventListener("submit", function(e){
     e.preventDefault();
-    let t = texto.value;
-    t = t.split(" ");
-    for (let i = 0; i<t.length; i++){
-        let palavra = t[i];
-        palavra = palavra.toUpperCase();
-        if (palavra.startswith("#")){
-            lista.push(palavra);
-        }else if(palavra.includes("#")){
-            let pos = palavra.indexOf("#");
-            mnhhgçmlglbpalavra.slice(0,pos)
-            lista.push(palavra);
-        }
-        }
-    tags.innerHTML = lista;
-    formulario.reset();
+    let data_formatada = `${hoje.getDay()}/${hoje.getMonth()}/${hoje.getFullYear}`;
+    saudacao.innerHTML = `Olá, ${nome.value}! Hoje é ${data_formatada}`;
+    cadastro.reset();
 });
